@@ -154,8 +154,18 @@ S X
             cin >> maze[i][j];
         }
     }
-    bath(0,0);
-    cout<<c<<el;
+    int mx=0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if(!vis[i][j]){
+                c=0;
+                bath(i,j);
+                mx= max(c,mx);
+            }
+        }
+    }
+    cout<<mx<<el;
+
 
 
 
