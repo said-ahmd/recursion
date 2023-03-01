@@ -83,9 +83,7 @@ bool there_a_path(int i,int j) {
 
     if (maze[i][j] == 'E')return true;//when this achieved i go back to the condition
 
-    if(there_a_path(i + 1, j)){
-        return true;//d
-    }
+    if(there_a_path(i + 1, j))return true;//d
     if(there_a_path(i, j + 1))return true;//r
     if(there_a_path(i, j - 1))return true;//l
     if(there_a_path(i - 1, j))return true;//u
@@ -96,9 +94,25 @@ bool there_a_path(int i,int j) {
     return false;
 }
 */
-const int n=4;
-int arr[n][n];
 
+char maze[N][N];
+int n;
+bool vis[N][N];
+bool valid(int i,int j){
+    return (i>=0 && i<n && j>=0 && j<n);
+}
+int c;
+void bath(int i, int j) {
+    if(!valid(i,j) || maze[i][j]=='X' || vis[i][j])return;
+    c++;
+    vis[i][j]= true;
+
+    bath(i+1,j);
+    bath(i-1,j);
+    bath(i,j+1);
+    bath(i,j-1);
+
+}
 void mymain() {
 
 /*    int n; cin>>n;
@@ -134,6 +148,14 @@ void mymain() {
 S X
 . E
     */
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; ++j) {
+            cin >> maze[i][j];
+        }
+    }
+    bath(0,0);
+    cout<<c<<el;
 
 
 
